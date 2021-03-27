@@ -9,28 +9,30 @@ import PostCard from '../components/PostCard'
 import Container from '../components/Container'
 
 const PostGrid = styled.div`
-    display:grid;
-    gap:30px;
-    grid-template-columns:repeat(auto-fill,minmax(350px, 1fr));
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 `
 
 export default function Home() {
-    const state = useSelector<State,State>(state => state)
+    const state = useSelector<State, State>((state) => state)
     return (
         <div>
             <Head>
                 <title>Create Next App</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            { !state.posts.length ? <Loader/> : 
+            {!state.posts.length ? (
+                <Loader />
+            ) : (
                 <Container>
                     <PostGrid>
-                        { state.posts.map( post => (
+                        {state.posts.map((post) => (
                             <PostCard key={post.id} {...post} />
-                        )) }
+                        ))}
                     </PostGrid>
                 </Container>
-            }
+            )}
         </div>
     )
 }
